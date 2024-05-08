@@ -6,7 +6,13 @@ const nextConfig = {
     TOKEN: process.env.API_TOKEN,
   },
   images: {
-    domains: [],
+    domains: [
+      "image.tmdb.org",
+      "www.themoviedb.org",
+      "www.themoviedb.org",
+      "www.themoviedb.org",
+      "",
+    ],
   },
 };
 

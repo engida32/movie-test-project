@@ -9,8 +9,8 @@ It uses React Query to fetch data and manage the state of the application as wel
 First, create .env file in the root of the project and add the following environment variables:
 
 ```bash
-NEXT_PUBLIC_API_URL=https://api.themoviedb.org/3
-NEXT_PUBLIC_API_KEY=YOUR_API_KEY
+BASE_URL=https://api.themoviedb.org/3
+API_KEY=YOUR_API_KEY
 ```
 
 Then, install the dependencies:

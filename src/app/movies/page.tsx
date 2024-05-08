@@ -172,43 +172,45 @@ const MovieListPage = () => {
           </Grid>
         ))}
       </Grid>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        display={getMovies.data?.data?.results?.length < 20 ? "none" : "flex"}
-        py={5}
-        spacing={2}
-        sx={{
-          //align to the end of the page
-          alignItems: "center",
-          mr: 6,
-          maxWidth: "92%",
-        }}
-      >
-        <Pagination
-          count={Math.ceil(getMovies.data?.data?.total_results / 20)}
-          page={page}
-          onChange={(e, page) => setPage(page)}
+      {getMovies.data?.data?.total_pages > 1 && (
+        <Stack
+          direction="row"
+          justifyContent="center"
+          display={getMovies.data?.data?.results?.length < 20 ? "none" : "flex"}
+          py={5}
+          spacing={2}
           sx={{
-            display: "flex",
-            borderRadius: "4px",
-
-            justifyContent: "center",
-            "& .MuiPaginationItem-root": {
-              border: "1px solid #828282",
-            },
+            //align to the end of the page
+            alignItems: "center",
+            mr: 6,
+            maxWidth: "92%",
           }}
-          renderItem={(item: any) => (
-            <PaginationItem
-              page={page}
-              {...item}
-              sx={{
-                ...paginationItemStyle,
-              }}
-            />
-          )}
-        />
-      </Stack>
+        >
+          <Pagination
+            count={Math.ceil(getMovies.data?.data?.total_results / 20)}
+            page={page}
+            onChange={(e, page) => setPage(page)}
+            sx={{
+              display: "flex",
+              borderRadius: "4px",
+
+              justifyContent: "center",
+              "& .MuiPaginationItem-root": {
+                border: "1px solid #828282",
+              },
+            }}
+            renderItem={(item: any) => (
+              <PaginationItem
+                page={page}
+                {...item}
+                sx={{
+                  ...paginationItemStyle,
+                }}
+              />
+            )}
+          />
+        </Stack>
+      )}
     </Stack>
   );
 };

@@ -45,7 +45,13 @@ const MovieDetail = ({ params }: { params: { movie_id: string } }) => {
       {getMovie.isSuccess && (
         <Stack
           sx={{
-            width: "50%",
+            width: {
+              xs: "100%",
+              sm: "80%",
+              md: "60%",
+              lg: "50%",
+              xl: "50%",
+            },
             height: "100%",
             margin: "auto",
 

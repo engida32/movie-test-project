@@ -183,7 +183,7 @@ const MovieListPage = () => {
         }}
       >
         <Pagination
-          count={getMovies.data?.data?.total_pages}
+          count={Math.ceil(getMovies.data?.data?.total_results / 20)}
           page={page}
           onChange={(e, page) => setPage(page)}
           sx={{

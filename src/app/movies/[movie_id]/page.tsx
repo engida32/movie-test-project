@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, LinearProgress, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -31,7 +31,16 @@ const MovieDetail = ({ params }: { params: { movie_id: string } }) => {
   }, [params.movie_id]);
   return (
     <div>
-      {getMovie.isLoading && "Loading..."}
+      {getMovie.isLoading && (
+        <LinearProgress
+          sx={{
+            width: "100%",
+            "& > * + *": {
+              marginTop: "20px",
+            },
+          }}
+        />
+      )}
       {getMovie.isError && "Error"}
       {getMovie.isSuccess && (
         <Stack
@@ -83,6 +92,8 @@ const MovieDetail = ({ params }: { params: { movie_id: string } }) => {
                 <span key={genre.id}>{genre.name}</span>
               ))}
             </Stack>
+            <h2>Runtime</h2>
+            <p>{getMovie.data?.data?.runtime} minutes</p>
           </Box>
         </Stack>
       )}

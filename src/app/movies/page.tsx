@@ -14,7 +14,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 //override pagination item style
-export const paginationItemStyle = {
+const paginationItemStyle = {
   width: "40px",
   height: "40px",
   color: "#828282",
@@ -51,7 +51,7 @@ const MovieListPage = () => {
             api_key: process.env.API_KEY,
             query: search.length > 0 ? search : "popular",
             page: page,
-            limit: 10,
+            // limit: 10,
           },
           headers: {
             "Content-Type": "application/json",
@@ -160,8 +160,9 @@ const MovieListPage = () => {
             >
               <img
                 src={
-                  `https://image.tmdb.org/t/p/w500${movie.poster_path}` ??
-                  "https://via.placeholder.com/500"
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : "https://via.placeholder.com/400"
                 }
                 alt={movie.title}
                 style={{ width: "100%" }}

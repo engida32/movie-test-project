@@ -35,7 +35,6 @@ export const paginationItemStyle = {
 };
 
 const MovieListPage = () => {
-  const [movies, setMovies] = React.useState([]);
   const [search, setSearch] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -65,7 +64,6 @@ const MovieListPage = () => {
   React.useEffect(() => {
     getMovies.refetch();
     getMovies.isLoading && setLoading(true);
-    getMovies.isFetched && setMovies(getMovies.data?.data?.results);
     getMovies.isError && setError(true);
   }, [search, page]);
   const router = useRouter();
@@ -172,7 +170,7 @@ const MovieListPage = () => {
       <Stack
         direction="row"
         justifyContent="center"
-        display={movies?.length === 0 ? "none" : "flex"}
+        display={getMovies.data?.data?.results?.length < 20 ? "none" : "flex"}
         py={5}
         spacing={2}
         sx={{

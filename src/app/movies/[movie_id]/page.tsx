@@ -80,7 +80,11 @@ const MovieDetail = ({ params }: { params: { movie_id: string } }) => {
             {getMovie.data?.data?.title}
           </Typography>
           <img
-            src={`https://image.tmdb.org/t/p/w500${getMovie.data?.data?.poster_path}`}
+            src={
+              getMovie.data?.data?.poster_path
+                ? `https://image.tmdb.org/t/p/w500${getMovie.data?.data?.poster_path}`
+                : "https://via.placeholder.com/500"
+            }
             alt={getMovie.data?.data?.title}
             style={{ width: "100%", height: "500px", objectFit: "contain" }}
           />

@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
+//override pagination item style
 export const paginationItemStyle = {
   width: "40px",
   height: "40px",
@@ -39,22 +40,25 @@ const MovieListPage = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [page, setPage] = React.useState(1);
-
+  //useQuery hook to fetch data and manage the state
   const getMovies = useQuery({
     queryKey: ["movies"],
     queryFn: () =>
-      axios.get(`${process.env.API_URL}/search/movie?page=${page}`, {
-        params: {
-          api_key: process.env.API_KEY,
-          query: search.length > 0 ? search : "popular",
-          page: page,
-          limit: 10,
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-        },
-      }),
+      axios.get(
+        `${process.env.API_URL}/search/movie?page=${page}include_adult=false&language=en-US`,
+        {
+          params: {
+            api_key: process.env.API_KEY,
+            query: search.length > 0 ? search : "popular",
+            page: page,
+            limit: 10,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+          },
+        }
+      ),
 
     enabled: Boolean(process.env.ACCESS_TOKEN),
     refetchOnMount: true,

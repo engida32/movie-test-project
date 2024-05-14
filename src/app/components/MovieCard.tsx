@@ -46,10 +46,6 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             borderColor: "grey.700",
             transform: "scale(1.05)",
           },
-          //write image not found if poster_path is null
-          // content: !movie.poster_path && `"Image not found"`,
-          // backgroundSize: "cover",
-          // backgroundPosition: "center",
         }}
         onClick={() => {
           router.push(`/movies/${movie.id}`);

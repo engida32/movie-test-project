@@ -34,7 +34,6 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           cursor: "pointer",
           height: "200px",
           width: "100%",
-          padding: 2,
           backgroundImage:
             // movie.poster_path &&
             // ?
@@ -48,7 +47,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
             transform: "scale(1.05)",
           },
           //write image not found if poster_path is null
-          content: !movie.poster_path && `"Image not found"`,
+          // content: !movie.poster_path && `"Image not found"`,
           // backgroundSize: "cover",
           // backgroundPosition: "center",
         }}

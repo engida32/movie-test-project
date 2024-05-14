@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
+import MovieCard from "../components/MovieCard";
 //override pagination item style
 const paginationItemStyle = {
   width: "40px",
@@ -40,7 +41,7 @@ const MovieListPage = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [page, setPage] = React.useState(1);
-  //useQuery hook to fetch data and manage the state
+  //useQuery hook to fetch data and manage the sta77te
   const getMovies = useQuery({
     queryKey: ["movies"],
     queryFn: () =>
@@ -134,41 +135,16 @@ const MovieListPage = () => {
             md={4}
             lg={3}
             key={movie.id}
-            onClick={() => {
-              router.push(`/movies/${movie.id}`);
-            }}
+            // onClick={() => {
+            //   router.push(`/movies/${movie.id}`);
+            // }}
             sx={{
-              maxWidth: "500px",
+              // maxWidth: "500px",
               cursor: "pointer",
               // height: "500px",
             }}
           >
-            <Stack
-              spacing={2}
-              sx={{
-                boxShadow: 1,
-                borderRadius: "12px",
-                border: "1px solid #e0e0e0",
-
-                p: 2,
-                "&:hover": {
-                  boxShadow: 2,
-                  borderColor: "grey.700",
-                  transform: "scale(1.05)",
-                },
-              }}
-            >
-              <img
-                src={
-                  movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                    : "https://via.placeholder.com/400"
-                }
-                alt={movie.title}
-                style={{ width: "100%" }}
-              />
-              <h3>{movie.title}</h3>
-            </Stack>
+            <MovieCard movie={movie} />
           </Grid>
         ))}
       </Grid>
